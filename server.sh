@@ -12,15 +12,11 @@ MINECRAFT_DIR="$HOME"
 function start_server {
     printf "\nStarting new Minecraft server..."
     cd $MINECRAFT_DIR
-    ./tmux new-session -s minecraft -n Minecraft -d > /dev/null 2>&1
+    ./miniconda2/bin/tmux new-session -s minecraft -n Minecraft -d > /dev/null 2>&1
 
-    if [ ! $? -eq 0 ]; then
-         printf "\nThere is already a Minecraft server running.\n\nRun 'minecraft stop' to stop it.\n\n"
-	  exit
-    fi
     sleep 2 # Wait for tmux login
 
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./miniconda2/bin/tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     sleep 5 # Wait for world generation
     printf "\nMinecraft server started. Run 'minecraft help' for more commands.\n\n"
 }
@@ -28,7 +24,7 @@ function start_server {
 function start_spigot {
     printf "\nStarting new Minecraft Spigot server..."
     cd $MINECRAFT_DIR
-    ./tmux new-session -s minecraft -n Minecraft -d > /dev/null 2>&1
+    ./miniconda2/bin/tmux new-session -s minecraft -n Minecraft -d > /dev/null 2>&1
 
     if [ ! $? -eq 0 ]; then
          printf "\nThere is already a Minecraft server running.\n\nRun 'minecraft stop' to stop it.\n\n"
@@ -36,25 +32,25 @@ function start_spigot {
     fi
     sleep 2 # Wait for tmux login
 
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./miniconda2/bin/tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     sleep 5 # Wait for world generation
     printf "\nMinecraft Spigot server started. Run 'minecraft help' for more commands.\n\n"
 }
 
 function stop_server {
-    ./tmux send-keys -t minecraft "stop" C-m > /dev/null 2>&1
+    ./miniconda2/bin/tmux send-keys -t minecraft "stop" C-m > /dev/null 2>&1
     if [ ! $? -eq 0 ]; then
         printf "\nMinecraft server has not been started.\nRun 'minecraft start' to begin.\n\n"
         exit
     fi
     printf "\nStopping server...\n"
     sleep 3 # Wait for server to halt
-    ./tmux kill-session -t minecraft
+    ./miniconda2/bin/tmux kill-session -t minecraft
     printf "\nStopped Minecraft server successfully.\n\n"
 }
 
 function restart_server {
-    ./tmux send-keys -t minecraft "stop" C-m > /dev/null 2>&1
+    ./miniconda2/bin/tmux send-keys -t minecraft "stop" C-m > /dev/null 2>&1
     if [ ! $? -eq 0 ]; then
         printf "\nMinecraft server has not been started.\nRun 'minecraft start' to begin.\n\n"
         exit
@@ -62,12 +58,12 @@ function restart_server {
 
     printf "\nRestarting Minecraft server..."
     sleep 5 # Wait for server to stop
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./miniconda2/bin/tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     printf "\nServer restarted successfully.\n\n"
 }
 
 function restart_spigot {
-    ./tmux send-keys -t minecraft "stop" C-m > /dev/null 2>&1
+    ./miniconda2/bin/tmux send-keys -t minecraft "stop" C-m > /dev/null 2>&1
     if [ ! $? -eq 0 ]; then
         printf "\nMinecraft server or Spigot server has not been started.\nRun 'minecraft start' to begin.\n\n"
         exit
@@ -75,14 +71,14 @@ function restart_spigot {
 
     printf "\nRestarting Minecraft server..."
     sleep 5 # Wait for server to stop
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./miniconda2/bin/tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     printf "\nServer restarted successfully.\n\n"
 }
 
 function manage_server {
     printf "\nJoining server session. Press ctrl-B-D to exit the session.\n"
     sleep 3
-    ./tmux attach-session -t minecraft > /dev/null 2>&1
+    ./miniconda2/bin/tmux attach-session -t minecraft > /dev/null 2>&1
     if [ ! $? -eq 0 ]; then
          printf "\nMinecraft server has not been started.\nRun 'minecraft start' to begin.\n\n"
     fi
