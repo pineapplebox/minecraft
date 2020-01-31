@@ -20,7 +20,7 @@ function start_server {
     fi
     sleep 2 # Wait for tmux login
 
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     sleep 5 # Wait for world generation
     printf "\nMinecraft server started. Run 'minecraft help' for more commands.\n\n"
 }
@@ -36,7 +36,7 @@ function start_spigot {
     fi
     sleep 2 # Wait for tmux login
 
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     sleep 5 # Wait for world generation
     printf "\nMinecraft Spigot server started. Run 'minecraft help' for more commands.\n\n"
 }
@@ -62,7 +62,7 @@ function restart_server {
 
     printf "\nRestarting Minecraft server..."
     sleep 5 # Wait for server to stop
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     printf "\nServer restarted successfully.\n\n"
 }
 
@@ -75,7 +75,7 @@ function restart_spigot {
 
     printf "\nRestarting Minecraft server..."
     sleep 5 # Wait for server to stop
-    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar Minecraft_Mod.jar --log-limit=10000 nogui" C-m
+    ./tmux send-keys -t minecraft "java -Xms128M -Xmx2192M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar root/Minecraft_Mod.jar --log-limit=10000 nogui" C-m
     printf "\nServer restarted successfully.\n\n"
 }
 
